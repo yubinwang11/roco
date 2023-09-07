@@ -47,7 +47,7 @@ class LLMRunner:
         llm_comm_mode="chat",
         llm_num_replans=1,
         give_env_feedback=True,
-        skip_display=False,
+        skip_display=True,
         policy_kwargs: Dict[str, Any] = dict(control_freq=50),
         direct_waypoints: int = 0,
         max_failed_waypoints: int = 0,
@@ -151,9 +151,11 @@ class LLMRunner:
             )
 
 
-    def display_plan(self, plan: LLMPathPlan, save_name = "vis_plan", save_dir = None):
+    def display_plan(self, plan: LLMPathPlan, save_name = "vis_plan", save_dir = None): # save_dir = None
         """ Display the plan in the viewer """
-        raise NotImplementedError
+        pass
+        #raise NotImplementedError
+        '''
         env = deepcopy(self.env)
         env.physics.data.qpos[:] = self.env.physics.data.qpos[:].copy()
         env.physics.forward()
@@ -168,6 +170,7 @@ class LLMRunner:
             img_path=save_path
             )
         self.env.render_point_cloud = False
+        '''
 
     def one_run(self, run_id: int = 0, start_step: int = 0, skip_reset = False, prev_llm_plans = [], prev_response = None, prev_actions = None):
         """ uses planner """

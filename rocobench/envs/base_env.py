@@ -643,7 +643,10 @@ class MujocoSimEnv:
             if step % self.error_freq == 0:
                 error_dict = action.compute_error(
                     qpos=self.data.qpos, xpos=self.data.xpos, xquat=self.data.xquat) 
-                if error_dict['error'] < self.error_threshold and step > self.render_freq * 2:
+                
+                #print('error_dict:', {error_dict}, 'step:', {step})
+                #if error_dict['error'] < self.error_threshold and step > self.render_freq * 2:
+                if error_dict < self.error_threshold and step > self.render_freq * 2:
                     break  
         self.render_all_cameras()
         
@@ -652,7 +655,8 @@ class MujocoSimEnv:
         
         next_obs = self.get_obs() # obs_T+1
         if verbose:
-            print(f"Sim Steped {step} steps, Error: {error_dict['error']}")
+            #print(f"Sim Steped {step} steps, Error: {error_dict['error']}")
+            print(f"Sim Steped {step} steps, Error: {error_dict}")
         reward, done = self.get_reward_done(next_obs)
         self.timestep += 1
         info = dict() 
