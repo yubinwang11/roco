@@ -198,7 +198,6 @@ class LLMRunner:
             with open(data_fname, "wb") as f:
                 pickle.dump(sim_data, f)
 
-
             if step == start_step and len(prev_llm_plans) > 0:
                 ready_to_execute = 1
                 current_llm_plan = prev_llm_plans
@@ -427,7 +426,6 @@ def main(args):
     if args.no_feedback:
         assert args.num_replans == 1, "no feedback mode requires num_replans=1 but longer -tsteps"
 
-
     # save args into a json file
     args_dict = vars(args)
     args_dict["env"] = env.__class__.__name__
@@ -435,6 +433,7 @@ def main(args):
     fname = os.path.join(args.data_dir, args.run_name, f"args_{timestamp}.json")
     os.makedirs(os.path.dirname(fname), exist_ok=True)
     json.dump(args_dict, open(fname, "w"), indent=2)
+    
     runner = LLMRunner(
         env=env,
         data_dir=args.data_dir,

@@ -70,6 +70,7 @@ class SortOneBlockTask(MujocoSimEnv):
     def __init__( 
         self,
         filepath: str = "rocobench/envs/task_sort.xml", 
+        one_obj_each: bool = True,
         **kwargs,
     ):    
         self.robot_names = ["ur5e_robotiq", "panda", "ur5e_suction"] 

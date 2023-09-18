@@ -179,6 +179,9 @@
 
     <!-- dustpan -->
     <mesh file="objects/meshes/dustpan.stl" name="dustpan" scale="1.2 1.2 1.2"/>
+
+    <material name="stove-metal" rgba="0.8 0.8 0.8 1" />
+    <material name="stove-black" rgba="0 0 0 1" />
     
   </asset> 
 </mujocoinclude>
